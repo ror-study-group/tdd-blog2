@@ -2,8 +2,13 @@ require 'spec_helper'
 
 feature 'Posts' do
 	scenario 'Shows all posts' do
-		post = FactoryGirl.create(:post)
+		posts = []
+		10.times do
+			posts << FactoryGirl.create(:post)
+		end
 		visit root_path
-		expect(page).to have_content post.title
+		posts.each do |post|
+			expect(page).to have_content post.title
+		end
 	end
 end
